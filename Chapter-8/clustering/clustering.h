@@ -1,0 +1,4 @@
+
+namespace duckies {
+
+} // namespace duckies
