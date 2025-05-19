@@ -8,6 +8,8 @@ add_library(ducky_readers STATIC
   json_reader.h
   csv_reader.cpp
   csv_reader.h
+  free_reader.cpp
+  free_reader.h
 )
 
 target_link_libraries(ducky_readers
@@ -26,6 +28,7 @@ target_include_directories(ducky_readers PRIVATE
 add_executable(test_ducky_readers
   test_csv_reader.cpp
   test_json_reader.cpp
+  test_free_reader.cpp
 )
 
 target_link_libraries(test_ducky_readers PRIVATE
