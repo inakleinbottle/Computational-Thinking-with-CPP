@@ -24,6 +24,17 @@ target_link_libraries(duckies PRIVATE
 )
 
 
+find_package(GTest CONFIG REQUIRED)
+include(GoogleTest)
 
+add_subdirectory(common)
+add_subdirectory(readers)
+
+
+
+target_link_libraries(duckies PRIVATE
+    duckies_common
+    ducky_readers
+)
 
 
