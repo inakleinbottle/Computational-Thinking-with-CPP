@@ -27,14 +27,16 @@ target_link_libraries(duckies PRIVATE
 find_package(GTest CONFIG REQUIRED)
 include(GoogleTest)
 
+enable_testing()
 add_subdirectory(common)
 add_subdirectory(readers)
-
+add_subdirectory(clustering)
 
 
 target_link_libraries(duckies PRIVATE
     duckies_common
     ducky_readers
+    ducky_clustering
 )
 
 
