@@ -59,6 +59,7 @@ add_library(function_with_noise INTERFACE
 add_library(address_book_record STATIC
         address_book_record.cpp
         address_book_record.hpp
+        conversion_traits.hpp
 )
 
 

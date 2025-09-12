@@ -1,7 +1,7 @@
 # Exercises for Chapter 2
 
 1. Implement the `ExpandingSearchRangeObject` from the "Iterating through the problem domain" section.
-2. Write a compare-ess operator for the `AddressBookRecord` class.
+2. Write a compare-less operator for the `AddressBookRecord` class.
 3. Write down specializations of the `ExactConversionTraits` trait for converting from `int64_t` to `double`.
 
 

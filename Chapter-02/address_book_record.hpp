@@ -27,6 +27,7 @@ bool compare_house_number(const AddressBookRecord& left, const AddressBookRecord
 bool compare_zip_code(const AddressBookRecord& left, const AddressBookRecord& right);
 
 
+bool operator<(const AddressBookRecord &lhs, const AddressBookRecord &rhs);
 
 
 class RecordView {
@@ -50,7 +51,6 @@ public:
 inline bool operator==(const RecordView &lhs, const RecordView &rhs) noexcept {
     return lhs.id() == rhs.id();
 }
-
 
 
 } // namespace ct
