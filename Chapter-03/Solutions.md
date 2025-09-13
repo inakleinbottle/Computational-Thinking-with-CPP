@@ -50,4 +50,20 @@
       Setting $q_j(x) = q_j'(x)$ for $j=1,2,\dots n$ and setting $q_{n+1}(x) =
       a_0 + xq_{n}'(x)$ gives us the system we need. This completes the proof.
 
-   2. Evaluating H\"orner's meth
+   2. Evaluating one of the polynomials $q_n(x)$ in Hörner's method requires 
+      one addition and one multiplication, assuming $q_{n-1}(x)$ has already
+      been evaluated. (Or a single fused multiply addition!) Thus the 
+      complete evaluation requires $n$ additions and $n$ multiplications. 
+      Compare this to evaluating a single power $x^n$, which would require 
+      $O(\log n)$ multiplications, and that's before we consider the 
+      coefficients. A secondary effect is that this recursive evaluation 
+      has better numerical stability. When we add two floating point numbers 
+      of greatly different magnitude, the result is usually not exactly 
+      equal to the sum of the two numbers. In particular, if $x$ is small 
+      then $x^n$ will be small compared to $x$ so, when aggregating, the sum 
+      the lower-order terms will be larger in magnitude than the 
+      higher-order terms so will dominate the sum. In contrast, each of the 
+      sums in the polynomials $q_n(x)$ will have operands of more comparable 
+      magnitudes. This means there is a smaller chance that one of the terms 
+      dominates the sum. (Of course this is not impossible if, for instance,
+      the coefficients themselves have greatly different magnitudes.)
