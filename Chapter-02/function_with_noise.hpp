@@ -25,10 +25,10 @@ public:
     {}
 
     double operator()(double arg) noexcept {
-        auto noise = m_dist(m_rng):
+        auto noise = m_dist(m_rng);
         return 2.*arg + 1 + noise;
     }
-}
+};
 
 }
 

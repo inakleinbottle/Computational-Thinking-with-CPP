@@ -33,7 +33,7 @@ add_executable(test_signal_intensity
 
 target_link_libraries(test_signal_intensity PRIVATE
         GTest::gtest_main
-        Intensity
+        signal_intensity
 )
 gtest_discover_tests(test_signal_intensity)
 
@@ -58,12 +58,9 @@ target_link_libraries(test_summary_stats PRIVATE
 gtest_discover_tests(test_summary_stats)
 
 
-
-
 ## Functions as building blocks
 
 add_library(find_root INTERFACE find_root.hpp)
-
 
 
 add_executable(test_find_root
@@ -82,7 +79,8 @@ add_library(function_with_noise INTERFACE
         function_with_noise.hpp)
 
 
-add_executable(test_function_with_noise)
+add_executable(test_function_with_noise
+        test_function_with_noise.cpp)
 
 target_link_libraries(test_function_with_noise PRIVATE
         GTest::gtest_main
@@ -103,8 +101,9 @@ add_library(address_book_record STATIC
 )
 
 
-
-add_executable(test_address_book_record)
+add_executable(test_address_book_record
+        test_address_book_record.cpp
+)
 
 target_link_libraries(test_address_book_record PRIVATE
         GTest::gtest_main
@@ -121,7 +120,9 @@ add_library(temperature_sensors STATIC
         concrete_temperature_sensor.cpp
         concrete_temperature_sensor.hpp)
 
-add_executable(test_temperature_sensors)
+add_executable(test_temperature_sensors
+        test_temperature_sensors.cpp
+)
 
 target_link_libraries(test_temperature_sensors PRIVATE
         GTest::gtest_main

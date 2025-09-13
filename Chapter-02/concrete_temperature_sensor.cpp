@@ -9,5 +9,5 @@ std::string_view ct::ConcreteTemperatureSensor::id() const noexcept {
 }
 
 float ct::ConcreteTemperatureSensor::temperature_kelvin() const noexcept {
-    return 293.15;
+    return m_temperature;
 }

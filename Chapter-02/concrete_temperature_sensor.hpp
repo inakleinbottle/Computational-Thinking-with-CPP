@@ -14,11 +14,12 @@ class ConcreteTemperatureSensor : public TempSensor {
     // where the temperature data would be read from.
     // For instance, on Unix based systems, this could
     // be a device file
+    double m_temperature;
 
 public:
 
-    ConcreteTemperatureSensor(std::string id) noexcept
-        : m_id{std::move(id)} {}
+    ConcreteTemperatureSensor(std::string id, float temperature) noexcept
+        : m_id{std::move(id)}, m_temperature{temperature} {}
 
     ~ConcreteTemperatureSensor() override;
 

@@ -101,6 +101,7 @@ public:
                     // outwards on the next iteration.
                     direction_ = X;
                 }
+                break;
             case X:
                 // Move out to the next ring, start moving north
                 ++ring_;

@@ -14,7 +14,7 @@ struct SourcePos {
 
 
 constexpr std::array<SourcePos, 3> sources{
-    SourcePos{3, 3, 7.0, 2.0},
+    SourcePos{4, 4, 7.0, 2.0},
     SourcePos{5, 0, 5.0, 4.0},
     SourcePos{7, 5, 4.0, 0.2}
 };
