@@ -20,15 +20,31 @@ set(OpenMP_RUNTIME_MSVC experimental) # needed to use OpenMP > 2.0
 find_package(OpenMP REQUIRED COMPONENTS CXX)
 
 
+if(CMAKE_HOST_SYSTEM_PROCESSOR MATCHES "^(i[3-6]86|x86|x64|x86_64|AMD64)$")
+    set(IS_X86 TRUE)
+else()
+    set(IS_X86 FALSE)
+    message(WARNING
+"Some of the targets in this this chapter require x86 CPU "
+"features (cpuid), and won't compile properly on processors "
+"with other architectures.")
+
+endif()
+
 ###############################################################################
 # Cache and memory
 ###############################################################################
+
+
+if (IS_X86)
 
 add_library(my_cpuid INTERFACE my_cpuid.h)
 target_include_directories(my_cpuid INTERFACE
         $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_LIBDIR}>
 )
+
+endif()
 
 ###############################################################################
 # Multithreading
@@ -60,11 +76,13 @@ target_Link_libraries(bench_nearest_neighbor PRIVATE
 # Cache and memory
 ###############################################################################
 
+if (IS_X86)
 add_executable(cache_information
         cache_information.cpp)
 
 target_link_libraries(cache_information PRIVATE my_cpuid)
 
+endif()
 
 add_library(gemm STATIC
         gemm.h
@@ -105,6 +123,8 @@ target_link_libraries(test_gemm PRIVATE gemm GTest::gtest_main)
 # Single instruction multiple data
 ###############################################################################
 
+if (IS_X86)
+
 add_library(saxpy STATIC saxpy.cpp saxpy.h
         get_best_instructions.h
         saxpy_hand.cpp)
@@ -141,6 +161,8 @@ if (BLAS_FOUND)
     target_link_libraries(bench_saxpy PRIVATE BLAS::BLAS)
     target_compile_definitions(bench_saxpy PRIVATE CT_BLAS=1)
 endif ()
+
+endif()
 
 
 ###############################################################################
