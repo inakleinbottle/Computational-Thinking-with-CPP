@@ -6,9 +6,13 @@ include(GNUInstallDirs)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+
+
 enable_testing()
-find_package(benchmark CONFIG REQUIRED)
 find_package(GTest CONFIG REQUIRED)
+include(GoogleTest)
+
+find_package(benchmark CONFIG REQUIRED)
 
 set(BLA_SIZEOF_INTEGER 8)
 set(BLA_STATIC ON)
@@ -100,6 +104,7 @@ add_executable(test_gemm test_gemm.cpp)
 
 target_link_libraries(test_gemm PRIVATE gemm GTest::gtest_main)
 
+gtest_discover_tests(test_gemm)
 
 ###############################################################################
 # Single instruction multiple data
