@@ -54,7 +54,7 @@ static void read_csv(typename FileReader::Data& data, const Reader& csv)
 	const auto ind_end = interests.end();
 
 	for (auto row : csv) {
-		if (!(row.begin() != row.end())) { continue; }
+		if (row.length() == 0) { continue; }
 
 		std::array<std::string_view, 4> values;
 		int col = 0;
