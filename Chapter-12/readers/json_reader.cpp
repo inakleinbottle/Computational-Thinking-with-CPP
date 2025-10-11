@@ -55,7 +55,7 @@ void JSONReader::read_stream(Data& data, std::istream& stream) const
 			descr = entry["description"].GetString();
 		}
 
-		data.insert(latitude, longitude, std::move(date), std::move(descr));
+		data.insert(latitude, longitude, date, std::move(descr));
 		++index;
 	}
 }
