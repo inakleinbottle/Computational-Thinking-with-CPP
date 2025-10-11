@@ -1,4 +1,5 @@
 
+#include <string_view>
 
 #include <gtest/gtest.h>
 
@@ -10,7 +11,7 @@ using namespace std::chrono_literals;
 TEST(CSV, TestReadSample)
 {
 	CSVReader reader;
-	std::string csv_sample("date, latitude, longitude, description\n"
+	std::string_view csv_sample("date, latitude, longitude, description\n"
 						   "2024-09-10, 51.5074, -0.1278, A mysterious rubber "
 						   "ducky was seen floating in London.\n");
 	RubberDuckData data;
@@ -32,7 +33,7 @@ TEST(CSV, TestReadSample)
 TEST(CSV, TestReadSamplePermutedCols)
 {
 	CSVReader reader;
-	std::string csv_sample("latitude, longitude, date, description\n"
+	std::string_view csv_sample("latitude, longitude, date, description\n"
 						   "51.5074, -0.1278, 2024-09-10, A mysterious rubber "
 						   "ducky was seen floating in London.\n");
 	RubberDuckData data;
