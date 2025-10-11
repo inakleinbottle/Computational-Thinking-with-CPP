@@ -196,7 +196,7 @@ RubberDuckData get_data(const po::variables_map& args)
 
 		auto ext = path.extension().string();
 		if (ext.empty()) {
-			spdlog::warn("path {} does not have an extesion", path.c_str());
+			spdlog::warn("path {} does not have an extension", path.c_str());
 			continue;
 		}
 
