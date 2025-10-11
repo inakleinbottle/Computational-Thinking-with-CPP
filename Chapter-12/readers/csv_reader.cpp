@@ -26,7 +26,7 @@ static std::array<int, 4> parse_headers(const Row& header)
 	const auto begin = col_headings.begin();
 	const auto end = col_headings.end();
 
-	std::array<int, 4> interests;
+	std::array<int, 4> interests = { -1, -1, -1, -1 };
 
 	int col = 0;
 	for (auto cell : header) {
@@ -39,6 +39,12 @@ static std::array<int, 4> parse_headers(const Row& header)
 		}
 
 		++col;
+	}
+
+	for (const auto& check : interests) {
+		if (check == -1) {
+			throw std::invalid_argument("not all required headings are provided");
+		}
 	}
 
 	return interests;
