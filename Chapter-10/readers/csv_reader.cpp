@@ -7,6 +7,7 @@
 #include <sstream>
 #include <string>
 #include <string_view>
+#include <stdexcept>
 
 #include <csv2/reader.hpp>
 #include <spdlog/spdlog.h>
