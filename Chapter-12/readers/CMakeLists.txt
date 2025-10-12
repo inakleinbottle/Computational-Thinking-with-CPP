@@ -1,5 +1,6 @@
 find_package(RapidJSON CONFIG REQUIRED)
 find_package(csv2 CONFIG REQUIRED)
+find_package(ctre CONFIG REQUIRED)
 
 add_library(ducky_readers STATIC
   file_reader.cpp
@@ -16,6 +17,7 @@ target_link_libraries(ducky_readers
   PRIVATE
   csv2::csv2
   spdlog::spdlog
+  ctre::ctre
   PUBLIC
   duckies_common
 )
@@ -40,6 +42,7 @@ add_executable(test_ducky_readers
 
 target_link_libraries(test_ducky_readers PRIVATE
   ducky_readers
+  ctre::ctre
   spdlog::spdlog
   GTest::gtest_main
   )
