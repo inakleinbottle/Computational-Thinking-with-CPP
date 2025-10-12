@@ -36,7 +36,6 @@ void KMeans::recompute_means()
 
 	for (size_t i = 0; i < N; ++i) {
 		auto label = labels_[i];
-		const auto& point = data_[i];
 		cluster_means_[label] += data_[i];
 	}
 
