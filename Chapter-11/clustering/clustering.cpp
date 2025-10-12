@@ -32,11 +32,12 @@ std::vector<Cluster> duckies::compute_clusters(const RubberDuckData& data,
 		}
 	};
 
+	constexpr size_t working_set_size = 3;
 	std::vector<ClusterScore> working_set;
-	working_set.reserve(3);
-	working_set.emplace_back(KMeans(embedded_data, 0), -1.0f);
-	working_set.emplace_back(KMeans(embedded_data, 0), -1.0f);
-	working_set.emplace_back(KMeans(embedded_data, 0), -1.0f);
+	working_set.reserve(working_set_size);
+	for (size_t i=0; i<working_set_size; ++i) {
+		working_set.emplace_back(KMeans(embedded_data, 0), -1.0f);
+	}
 
 	auto best_working = [&] {
 		return std::max_element(working_set.begin(), working_set.end(),
@@ -81,7 +82,7 @@ std::vector<Cluster> duckies::compute_clusters(const RubberDuckData& data,
 	std::vector<Cluster> result;
 	result.reserve(best.size());
 
-	for (auto& cluster : best) {
+	for (const auto& cluster : best) {
 		result.emplace_back(to_coordinates(cluster.first), cluster.second);
 	}
 

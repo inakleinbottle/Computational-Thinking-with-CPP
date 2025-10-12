@@ -96,7 +96,7 @@ void KMeans::set_labels(std::vector<int> labels)
 	cluster_size_.clear();
 	spdlog::debug("setting labels to given");
 
-	for (auto& label : labels_) {
+	for (const auto& label : labels_) {
 		if (label >= static_cast<int>(cluster_size_.size())) {
 			cluster_size_.resize(label + 1);
 		}
@@ -157,7 +157,7 @@ float duckies::compute_score(const KMeans& driver)
 
 	silhouette /= static_cast<float>(data.size());
 
-	auto& sizes = driver.cluster_sizes();
+	const auto& sizes = driver.cluster_sizes();
 	// auto num_zeros = std::count(sizes.begin(), sizes.end(), 0);
 	// auto penalty = static_cast<float>(num_zeros);
 	float penalty = 0.0f;
