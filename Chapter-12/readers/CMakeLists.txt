@@ -20,6 +20,13 @@ target_link_libraries(ducky_readers
   duckies_common
 )
 
+# Clang defaults to a expression fold limit of 256 terms, which is
+# too small for our compile-time regexes. We expand this here and
+# below.
+if (CMAKE_CXX_COMPILER_ID MATCHES Clang)
+  target_compile_options(ducky_readers PRIVATE -fbracket-depth=1024)
+endif()
+
 target_include_directories(ducky_readers PRIVATE
   ${RAPIDJSON_INCLUDE_DIRS}
 )
@@ -38,3 +45,7 @@ target_link_libraries(test_ducky_readers PRIVATE
   )
 
 gtest_discover_tests(test_ducky_readers)
+
+if (CMAKE_CXX_COMPILER_ID MATCHES Clang)
+  target_compile_options(test_ducky_readers PRIVATE -fbracket-depth=1024)
+endif()
