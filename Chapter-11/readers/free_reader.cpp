@@ -75,7 +75,7 @@ static std::optional<chrono::day> get_day(const Match& match)
 }
 
 template <typename Match>
-static std::optional<chrono::month> get_month(const Match& match) noexcept
+static std::optional<chrono::month> get_month(const Match& match)
 {
 	std::optional<chrono::month> result;
 
@@ -138,7 +138,7 @@ static std::optional<chrono::month> get_month(const Match& match) noexcept
 static std::optional<chrono::year_month_day> parse_date(std::u8string_view text)
 {
 	// Pattern and names of groups as fixed_strings
-	static constexpr ctll::fixed_string date_re { RE_DATE };
+	constexpr ctll::fixed_string date_re { RE_DATE };
 
 	std::optional<chrono::year_month_day> result;
 	auto match = ctre::search<date_re>(text);
@@ -165,16 +165,16 @@ static std::optional<chrono::year_month_day> parse_date(std::u8string_view text)
 }
 
 template <typename Match>
-static std::optional<Coordinate> get_dms(const Match& match) noexcept
+static std::optional<Coordinate> get_dms(const Match& match)
 {
-	static constexpr ctll::fixed_string lat_d_name { "lat_deg" };
-	static constexpr ctll::fixed_string lat_m_name { "lat_min" };
-	static constexpr ctll::fixed_string lat_s_name { "lat_sec" };
-	static constexpr ctll::fixed_string lat_cd_name { "lat_card" };
-	static constexpr ctll::fixed_string lon_d_name { "lon_deg" };
-	static constexpr ctll::fixed_string lon_m_name { "lon_min" };
-	static constexpr ctll::fixed_string lon_s_name { "lon_sec" };
-	static constexpr ctll::fixed_string lon_cd_name { "lon_card" };
+	constexpr ctll::fixed_string lat_d_name { "lat_deg" };
+	constexpr ctll::fixed_string lat_m_name { "lat_min" };
+	constexpr ctll::fixed_string lat_s_name { "lat_sec" };
+	constexpr ctll::fixed_string lat_cd_name { "lat_card" };
+	constexpr ctll::fixed_string lon_d_name { "lon_deg" };
+	constexpr ctll::fixed_string lon_m_name { "lon_min" };
+	constexpr ctll::fixed_string lon_s_name { "lon_sec" };
+	constexpr ctll::fixed_string lon_cd_name { "lon_card" };
 
 	std::optional<Coordinate> result;
 
@@ -227,7 +227,7 @@ static std::optional<Coordinate> get_dms(const Match& match) noexcept
 
 static std::optional<Coordinate> parse_coord(std::u8string_view text)
 {
-	static constexpr ctll::fixed_string coord_re { RE_COORD };
+	constexpr ctll::fixed_string coord_re { RE_COORD };
 
 	std::optional<Coordinate> result;
 	auto match = ctre::search<coord_re>(text);
@@ -237,8 +237,8 @@ static std::optional<Coordinate> parse_coord(std::u8string_view text)
 		return result;
 	}
 
-	static constexpr ctll::fixed_string dd_lat_name { "dd_lat" };
-	static constexpr ctll::fixed_string dd_lon_name { "dd_lon" };
+	constexpr ctll::fixed_string dd_lat_name { "dd_lat" };
+	constexpr ctll::fixed_string dd_lon_name { "dd_lon" };
 
 	if (auto dd_lat = match.get<dd_lat_name>()) {
 		auto dd_lon = match.get<dd_lon_name>();
@@ -263,7 +263,7 @@ static std::optional<Coordinate> parse_coord(std::u8string_view text)
 }
 
 static void parse_entry(
-	typename FileReader::Data& data, std::u8string_view text) noexcept
+	typename FileReader::Data& data, std::u8string_view text)
 {
 
 	auto date = parse_date(text);
