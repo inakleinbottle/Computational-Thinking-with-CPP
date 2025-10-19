@@ -188,7 +188,7 @@ RubberDuckData get_data(const po::variables_map& args)
 
 	for (auto& path : args["paths"].as<PathVec>()) {
 		spdlog::info("processing file {}", path.c_str());
-		if (!exists(path)) {
+		if (!std::filesystem::exists(path)) {
 			spdlog::warn(
 				"path argument {} does not exist, skipping", path.c_str());
 			continue;
