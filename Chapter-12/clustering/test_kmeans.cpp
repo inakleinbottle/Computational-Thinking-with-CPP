@@ -28,7 +28,7 @@ TEST(KMeans, TestComputeMeans)
 	KMeans k_means(std::span<const Coord3>(polar_data, 10), size_t(2));
 	k_means.set_labels({ 0, 1, 0, 0, 0, 0, 1, 1, 1, 1 });
 
-	auto& sizes = k_means.cluster_sizes();
+	const auto& sizes = k_means.cluster_sizes();
 	EXPECT_EQ(sizes[0], 5);
 	EXPECT_EQ(sizes[1], 5);
 
@@ -47,12 +47,12 @@ TEST(KMeans, TestMeansEmptyCluster)
 {
 	KMeans k_means(std::span<const Coord3>(polar_data, 10), size_t(3));
 	k_means.set_labels({ 2, 1, 2, 2, 2, 2, 1, 1, 1, 1 });
-	auto& sizes = k_means.cluster_sizes();
+	const auto& sizes = k_means.cluster_sizes();
 	ASSERT_EQ(sizes.size(), 3);
 	EXPECT_EQ(sizes[0], 0);
 
 	k_means.recompute_means();
-	auto& means = k_means.cluster_means();
+	const auto& means = k_means.cluster_means();
 	ASSERT_EQ(means.size(), 3);
 
 	EXPECT_EQ(means[0], Coord3(0.0f, 0.0f, 0.0f));
@@ -65,7 +65,7 @@ TEST(KMeans, TestRandomAssignment)
 	k_means.assign_random_labels(12345);
 
 	std::set<int> seen;
-	for (auto& label : k_means.labels()) {
+	for (const auto& label : k_means.labels()) {
 		EXPECT_GE(label, 0);
 		EXPECT_LT(label, k);
 		seen.insert(label);
@@ -86,7 +86,7 @@ TEST(KMeans, TestConvergeIterations)
 	}
 
 	ASSERT_LT(no_iters, 10);
-	auto& labels = k_means.labels();
+	const auto& labels = k_means.labels();
 
 	EXPECT_EQ(labels[2], labels[0]);
 	EXPECT_EQ(labels[3], labels[0]);
@@ -102,7 +102,7 @@ TEST(KMeans, TestAlgorithmFunction)
 {
 	KMeans k_means(std::span<const Coord3>(polar_data, 10), size_t(2));
 	kmeans_cluster(k_means, 12345, 10);
-	auto& labels = k_means.labels();
+	const auto& labels = k_means.labels();
 
 	EXPECT_EQ(labels[2], labels[0]);
 	EXPECT_EQ(labels[3], labels[0]);

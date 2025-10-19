@@ -1,7 +1,6 @@
 #include "file_reader.h"
 
 #include "csv_reader.h"
-#include "free_reader.h"
 #include "json_reader.h"
 
 #include <filesystem>
@@ -21,10 +20,6 @@ duckies::get_readers()
 	auto json_reader = std::make_unique<JSONReader>();
 	std::string json_ext(json_reader->supported_file_extension());
 	readers[json_ext] = std::move(json_reader);
-
-	auto free_reader = std::make_unique<FreeTextReader>();
-	std::string free_ext(free_reader->supported_file_extension());
-	readers[free_ext] = std::move(free_reader);
 
 	return readers;
 }

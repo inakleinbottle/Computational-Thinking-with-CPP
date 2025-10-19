@@ -49,7 +49,7 @@ public:
 		std::chrono::year_month_day date, std::string descr)
 	{
 		coordinates_.push_back({ latitude, longitude });
-		dates_.emplace_back(std::move(date));
+		dates_.emplace_back(date);
 		descriptions_.emplace_back(std::move(descr));
 	}
 };

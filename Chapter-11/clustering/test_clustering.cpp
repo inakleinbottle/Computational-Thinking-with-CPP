@@ -25,7 +25,7 @@ TEST(Clustering, TestClusteringPolarData)
 	auto clusters = compute_clusters(data, 1, 10, 5, 100);
 	ASSERT_EQ(clusters.size(), 2);
 
-	for (auto& cluster : clusters) {
+	for (const auto& cluster : clusters) {
 		EXPECT_EQ(cluster.num_points, 5);
 	}
 }
