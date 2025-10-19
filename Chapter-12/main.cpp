@@ -186,7 +186,7 @@ RubberDuckData get_data(const po::variables_map& args)
 
 	RubberDuckData data;
 
-	for (auto& path : args["paths"].as<PathVec>()) {
+	for (const auto& path : args["paths"].as<PathVec>()) {
 		spdlog::info("processing file {}", path.c_str());
 		if (!std::filesystem::exists(path)) {
 			spdlog::warn(
@@ -227,7 +227,7 @@ void run_and_report(const po::variables_map& args)
 		auto results = compute_clusters(
 			data, k_min, k_max, num_repetitions, max_iterations);
 
-		for (auto& cluster : results) {
+		for (const auto& cluster : results) {
 			std::cout << std::format("{: 7.3f} {: 8.3f} {}\n",
 				cluster.position.latitude, cluster.position.longitude,
 				cluster.num_points);
